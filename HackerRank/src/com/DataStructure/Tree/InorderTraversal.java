@@ -2,18 +2,6 @@ package com.DataStructure.Tree;
 
 import java.util.Scanner;
 
-class Node {
-	Node left;
-	Node right;
-	int data;
-
-	Node(int data) {
-		this.data = data;
-		left = null;
-		right = null;
-	}
-}
-
 class Solution {
 
 	/*
@@ -22,19 +10,31 @@ class Solution {
 	 * class Node { int data; Node left; Node right; }
 	 * 
 	 */
+	private class Node {
+		Node left;
+		Node right;
+		int data;
+
+		Node(int data) {
+			this.data = data;
+			left = null;
+			right = null;
+		}
+	}
 
 	public static void inOrder(Node root) {
 		if (root == null)
 			return;
-		System.out.print(root.data + " ");
+
 		inOrder(root.left);
-		
+		System.out.print(root.data + " ");
 		inOrder(root.right);
 	}
 
 	public static Node insert(Node root, int data) {
 		if (root == null) {
-			return new Node(data);
+			Solution s = new Solution();
+			return s.new Node(data);
 		} else {
 			Node cur;
 			if (data <= root.data) {

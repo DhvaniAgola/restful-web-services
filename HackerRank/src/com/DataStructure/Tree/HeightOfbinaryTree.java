@@ -5,23 +5,23 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
 
-//class Node {
-//	Node left;
-//	Node right;
-//	int data;
-//
-//	Node(int data) {
-//		this.data = data;
-//		left = null;
-//		right = null;
-//	}
-//}
-
 class HeightOfBinaryTree {
 
 	/*
 	 * class Node int data; Node left; Node right;
 	 */
+	class Node {
+		Node left;
+		Node right;
+		int data;
+
+		Node(int data) {
+			this.data = data;
+			left = null;
+			right = null;
+		}
+	}
+
 	public static int count = 0;
 	public static List<Integer> lstHeight = new ArrayList<>();
 
@@ -47,7 +47,8 @@ class HeightOfBinaryTree {
 
 	public static Node insert(Node root, int data) {
 		if (root == null) {
-			return new Node(data);
+			HeightOfBinaryTree h = new HeightOfBinaryTree();
+			return h.new Node(data);
 		} else {
 			Node cur;
 			if (data <= root.data) {
