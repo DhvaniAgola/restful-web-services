@@ -54,9 +54,14 @@ public class BFS_ShortestSearch {
 
 	private static void findAllPossibleWays(int n, int to, int s, graph g, int count, boolean visited[],
 			List<Integer> allways) {
+		boolean tempVisited[] = new boolean[n];
+
 		visited[s] = true;
+		tempVisited = visited;
 		int tempCount = count;
+
 		for (int i = 0; i < g.arrLL[s].size(); i++) {
+			System.out.println(s + " : " + g.arrLL[s].get(i));
 			if (g.arrLL[s].get(i) == (to)) {
 				tempCount = count;
 				tempCount++;
@@ -64,11 +69,25 @@ public class BFS_ShortestSearch {
 			} else if (visited[g.arrLL[s].get(i)] != true) {
 				tempCount = count;
 				tempCount++;
-				findAllPossibleWays(n, to, g.arrLL[s].get(i), g, tempCount, visited, allways);
+				findAllPossibleWays(n, to, g.arrLL[s].get(i), g, tempCount, tempVisited, allways);
 			}
 		}
 		return;
 	}
+//	private static void findAllPossibleWays(int n, int to, int s, graph g, int count, boolean visited[],
+//			List<Integer> allways) {
+//		visited[s] = true;
+//		for (int m : g.arrLL[s]) {
+//			if (!visited[m]) {
+//				if (g.arrLL[m].contains(j)) {
+//					connectivityFlag = 1;
+//					return;
+//				} else
+//
+//					checkConnectivity(m, j, g, visited);
+//			}
+//		}
+//	}
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
