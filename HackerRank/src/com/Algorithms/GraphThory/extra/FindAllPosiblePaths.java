@@ -35,29 +35,35 @@ public class FindAllPosiblePaths {
 	private static void visiteAllPosivlePaths(Graph g, boolean[] visited, List<Integer> lst, int node1, int node2) {
 		// TODO Auto-generated method stub
 		boolean v2[] = new boolean[visited.length];
-
+		List<Integer> lstTemp = new ArrayList<>();
 		visited[node1] = true;
 		for (int i = 0; i < v2.length; i++) {
 			if (visited[i])
 				v2[i] = true;
+			else
+				v2[i] = false;
 		}
-		List<Integer> lstTemp = new ArrayList<>();
 
 		lst.add(node1);
 		lstTemp.addAll(lst);
 		if (node1 == node2) {
 
 			calculateValue(lst);
-			lst.clear();
-//			lst.addAll(lstTemp);
 			return;
 		}
 
 		for (int i : g.LL[node1]) {
+			System.out.println(node1 + " :: " + i);
 			if (v2[i] == false) {
-				visiteAllPosivlePaths(g, v2, lst, i, node2);
-				v2 = visited;
-				lst.addAll(lstTemp);
+				visiteAllPosivlePaths(g, v2, lstTemp, i, node2);
+				for (int j = 0; j < v2.length; j++) {
+					if (visited[j])
+						v2[j] = true;
+					else
+						v2[j] = false;
+				}
+				lstTemp.clear();
+				lstTemp.addAll(lst);
 			}
 		}
 
