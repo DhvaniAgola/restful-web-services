@@ -1,3 +1,9 @@
+/*Description : 
+ * Input : Number of vertices, number of edges, pairs of vertices for edges
+ * Output : Print all disjoint graphs : vertices and edges for each graph
+ * 			last line prints two integers : first integer is 0 for disjoint graph otherwise 1; second integer is number of disjoint graphs
+ */
+
 package com.Algorithms.GraphThory.extra;
 
 import java.util.ArrayList;
@@ -20,9 +26,11 @@ public class NumberOfConnectedGraphsLab6 {
 
 	}
 
-	static void createEdge(graph g, int u, int v) {
-		g.ll[u].add(v);
-		g.ll[v].add(u);
+	static void createEdge(graph g, int[][] edges) {
+		for (int i = 0; i < edges.length; i++) {
+			g.ll[edges[i][1]].add(edges[i][0]);
+			g.ll[edges[i][0]].add(edges[i][1]);
+		}
 	}
 
 	public static void main(String[] args) {
@@ -40,23 +48,26 @@ public class NumberOfConnectedGraphsLab6 {
 //			int v = scn.nextInt();
 //			createEdge(g, u, v);
 //		}
-		createEdge(g, 1, 2);
-		createEdge(g, 2, 3);
-		createEdge(g, 3, 4);
-		createEdge(g, 2, 4);
-		createEdge(g, 1, 3);
-		createEdge(g, 2, 8);
-		createEdge(g, 5, 7);
-		createEdge(g, 6, 7);
-		createEdge(g, 5, 6);
-		int ans = traverseGraph(g, n, lst);
+//		createEdge(g, 1, 2);
+//		createEdge(g, 2, 3);
+//		createEdge(g, 3, 4);
+//		createEdge(g, 2, 4);
+//		createEdge(g, 1, 3);
+//		createEdge(g, 2, 8);
+//		createEdge(g, 5, 7);
+//		createEdge(g, 6, 7);
+//		createEdge(g, 5, 6);
+
+		int edges[][] = { { 1, 2 }, { 2, 3 }, { 3, 4 }, { 2, 4 }, { 1, 3 }, { 2, 8 }, { 5, 7 }, { 6, 7 }, { 5, 6 } };
+		createEdge(g, edges);
+		int ans = traverseGraph(g, n, lst, edges);
 		int connectivity = 0;
 		if (ans == 1)
 			connectivity = 1;
 		System.out.println(connectivity + " " + ans);
 	}
 
-	private static int traverseGraph(graph g, int n, List<Integer> lst) {
+	private static int traverseGraph(graph g, int n, List<Integer> lst, int[][] edges) {
 		// TODO Auto-generated method stub
 		boolean visited[] = new boolean[n];
 
@@ -65,7 +76,12 @@ public class NumberOfConnectedGraphsLab6 {
 			finallst.clear();
 			int start = lst.get(0);
 			visitNodes(g, n, start, lst, visited);
-			System.out.println(finallst);
+			System.out.print(finallst + " : ");
+			for (int i = 0; i < edges.length; i++) {
+				if (finallst.contains(edges[i][0]))
+					System.out.print("(" + edges[i][0] + ", " + edges[i][1] + "), ");
+			}
+			System.out.println();
 			count++;
 		}
 		return count;
