@@ -33,6 +33,7 @@ public class LowestCommonAncestor {
 			LowestCommonAncestor l = new LowestCommonAncestor();
 			return l.new Node(data);
 		} else {
+			System.out.println(" root : " + root.data);
 			Node cur;
 			if (data <= root.data) {
 				cur = insert(root.left, data);

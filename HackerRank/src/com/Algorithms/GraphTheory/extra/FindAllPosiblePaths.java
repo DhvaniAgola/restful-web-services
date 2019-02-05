@@ -1,4 +1,4 @@
-package com.Algorithms.GraphThory.extra;
+package com.Algorithms.GraphTheory.extra;
 
 import java.util.ArrayList;
 import java.util.LinkedList;

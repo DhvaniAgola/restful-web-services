@@ -4,7 +4,7 @@
  * 			last line prints two integers : first integer is 0 for disjoint graph otherwise 1; second integer is number of disjoint graphs
  */
 
-package com.Algorithms.GraphThory.extra;
+package com.Algorithms.GraphTheory.extra;
 
 import java.util.ArrayList;
 import java.util.LinkedList;

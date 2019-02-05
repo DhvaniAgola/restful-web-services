@@ -71,7 +71,6 @@ public class BFS_ShortestSearch {
 		lst.add(s);
 		lstTemp.addAll(lst);
 		if (s == to) {
-
 			calculateValue(lst);
 			return;
 		}
