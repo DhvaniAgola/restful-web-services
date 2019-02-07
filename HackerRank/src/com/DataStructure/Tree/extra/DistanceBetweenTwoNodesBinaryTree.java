@@ -20,7 +20,7 @@ public class DistanceBetweenTwoNodesBinaryTree {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		int arr[] = { 1, 2, 3, 4, 5, 6, 7, 8 };
+		int arr[] = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11 };
 
 		Node root = null;
 		root = LevelOrderInsertion(root, arr[0], null);
@@ -33,11 +33,17 @@ public class DistanceBetweenTwoNodesBinaryTree {
 		}
 		preOrder(root);
 		System.out.println();
-		int a = 8;
-		int b = 5;
-		int ans = finDistance(root, a, b);
-
-		System.out.println(ans);
+		int a = 2;// from which node
+		int b;
+		int ans;
+		int dist = 2;
+		for (int i = 0; i < arr.length; i++) {
+			b = arr[i];
+			ans = finDistance(root, a, b);// will return distance between a and b
+			if (ans == dist)
+				System.out.print(arr[i] + " ");// will print all nodes which are at the distance of 'dist' from a
+		}
+//		System.out.println(ans);
 	}
 
 	static List<Integer> pathF = new ArrayList<>();
@@ -55,10 +61,25 @@ public class DistanceBetweenTwoNodesBinaryTree {
 		findPath(root, b, pathb);
 		pathb.clear();
 		pathb.addAll(pathF);
-		System.out.println("patha : " + patha);
-		System.out.println("pathb : " + pathb);
+		pathF.clear();
+//		System.out.println("patha : " + patha);
+//		System.out.println("pathb : " + pathb);
 		int ans = findCommonAnscestor(patha, pathb);
-		return ans;
+		int distance = getDistance(patha, pathb, ans);
+		return distance;
+	}
+
+	private static int getDistance(List<Integer> patha, List<Integer> pathb, int anscester) {
+		// TODO Auto-generated method stub
+		int lengthofanscester = 0;
+		for (int i = 0; i < patha.size(); i++) {
+			if (patha.get(i) == anscester)
+				break;
+			else
+				lengthofanscester++;
+		}
+		int finalans = (patha.size() - 1) + (pathb.size() - 1) - (2 * lengthofanscester);
+		return finalans;
 	}
 
 	private static int findCommonAnscestor(List<Integer> patha, List<Integer> pathb) {
